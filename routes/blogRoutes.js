@@ -5,6 +5,7 @@ import {
   updateBlogController,
   deleteBlogController,
   getBlogController,
+  userBlogController,
 } from "../controllers/blogController.js";
 
 // router object from express
@@ -24,5 +25,8 @@ router.delete("/delete-blog/:id", deleteBlogController);
 
 // blog detail - GET
 router.get("/get-blog/:id", getBlogController);
+
+// user blog - GET
+router.get("/user-blog/:id", userBlogController);
 
 export default router;
