@@ -8,6 +8,9 @@ import connectDB from "./config/db.js";
 // env config
 dotenv.config();
 
+// router import
+import userRoutes from "./routes/userRoutes.js";
+
 // mongoDB connection
 connectDB();
 
@@ -19,10 +22,11 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-// home route - basic
-app.get("/", (req, res) => {
-  res.send("<h1>This is MERN blog site</h1>");
-});
+// route
+// app.get("/", (req, res) => {
+//   res.send("<h1>This is MERN blog site</h1>");
+// });
+app.use("/api/v1/users", userRoutes);
 
 // listening server on port 5000
 const PORT = process.env.PORT || 5000;
