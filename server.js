@@ -10,6 +10,7 @@ dotenv.config();
 
 // router import
 import userRoutes from "./routes/userRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 
 // mongoDB connection
 connectDB();
@@ -27,6 +28,7 @@ app.use(morgan("dev"));
 //   res.send("<h1>This is MERN blog site</h1>");
 // });
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/blogs", blogRoutes);
 
 // listening server on port 5000
 const PORT = process.env.PORT || 5000;
