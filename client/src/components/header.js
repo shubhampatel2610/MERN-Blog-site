@@ -8,16 +8,30 @@ import {
   Tabs,
   Tab,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../redux/store";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // global states
   const isLogin = useSelector((state) => state.isLogin);
-  console.log(isLogin);
 
   // states
   const { value, setValue } = useState();
+
+  // handle sign out button
+  const handleSignOut = () => {
+    try {
+      dispatch(authActions.signout());
+      alert("User signed out successfully...");
+      navigate("/signin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <AppBar position="sticky">
@@ -45,17 +59,22 @@ const Header = () => {
                 >
                   Sign-In
                 </Button>
-                <Button
+                {/* <Button
                   sx={{ margin: 1, color: "white" }}
                   LinkComponent={Link}
                   to="/signup"
                 >
                   Sign-Up
-                </Button>
+                </Button> */}
               </>
             )}
             {isLogin && (
-              <Button sx={{ margin: 1, color: "white" }}>Sign-Out</Button>
+              <Button
+                onClick={handleSignOut}
+                sx={{ margin: 1, color: "white" }}
+              >
+                Sign-Out
+              </Button>
             )}
           </Box>
         </Toolbar>
