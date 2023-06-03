@@ -24,9 +24,9 @@ const Header = () => {
   // handle sign out button
   const handleSignOut = () => {
     try {
-      dispatch(authActions.signout());
+      dispatch(authActions.logout());
       alert("User signed out successfully...");
-      navigate("/signin");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -44,8 +44,10 @@ const Header = () => {
                 value={value}
                 onChange={(event, value) => setValue(value)}
               >
-                <Tab label="All Blogs" LinkComponent={Link} to="/blogs" />
-                <Tab label="My Blogs" LinkComponent={Link} to="/my-blogs" />
+                <Tab label="Blogs" LinkComponent={Link} to="/blogs" />
+                <Tab label="Create" LinkComponent={Link} to="/create-blog" />
+                {/* <Tab label="All Blogs" LinkComponent={Link} to="/blogs" />
+                <Tab label="My Blogs" LinkComponent={Link} to="/my-blogs" /> */}
               </Tabs>
             </Box>
           )}
@@ -55,14 +57,14 @@ const Header = () => {
                 <Button
                   sx={{ margin: 1, color: "white" }}
                   LinkComponent={Link}
-                  to="/signin"
+                  to="/login"
                 >
                   Sign-In
                 </Button>
                 {/* <Button
                   sx={{ margin: 1, color: "white" }}
                   LinkComponent={Link}
-                  to="/signup"
+                  to="/register"
                 >
                   Sign-Up
                 </Button> */}

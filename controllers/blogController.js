@@ -5,7 +5,7 @@ import userModel from "../models/userModel.js";
 // get all blogs
 export const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await blogModel.find({});
+    const blogs = await blogModel.find({}).populate("user");
     if (!blogs) {
       return res.status(200).send({
         message: "No blogs found...",

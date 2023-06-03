@@ -31,7 +31,7 @@ const Signup = () => {
       });
       if (data.success) {
         alert("User registered successfully...");
-        navigate("/signin");
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);
@@ -102,7 +102,7 @@ const Signup = () => {
           </Button>
           <p>
             Already have an account?
-            <Button onClick={() => navigate("/signin")}>Sign In</Button>
+            <Button onClick={() => navigate("/login")}>Sign In</Button>
           </p>
         </Box>
       </form>

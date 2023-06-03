@@ -25,13 +25,15 @@ const Signin = () => {
   // handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const { data } = await axios.post("/api/v1/users/login", {
         email: input.email,
         password: input.password,
       });
+
       if (data.success) {
-        dispatch(authActions.signin());
+        dispatch(authActions.login());
         alert("User login successfully...");
         navigate("/");
       }
@@ -94,7 +96,7 @@ const Signin = () => {
           </Button>
           <p>
             New user?
-            <Button onClick={() => navigate("/signup")}>Sign Up</Button>
+            <Button onClick={() => navigate("/register")}>Sign Up</Button>
           </p>
         </Box>
       </form>
