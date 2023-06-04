@@ -5,8 +5,32 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function BlogCard({ title, description, time, username }) {
+export default function BlogCard({ title, description, time, username, id }) {
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/blog-details/${id}`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      const { data } = await axios.delete(`/api/v1/blogs/delete-blog/${id}`);
+      if (data?.success) {
+        alert("Blog deleted successfully...");
+        window.location.reload();
+        // navigate("/all-blogs");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Card
       sx={{
@@ -28,6 +52,16 @@ export default function BlogCard({ title, description, time, username }) {
         }
         title={username}
         subheader={time}
+        action={
+          <Box display={"flex"}>
+            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
+              <EditIcon />
+            </IconButton>
+            <IconButton onClick={handleDelete}>
+              <DeleteIcon />
+            </IconButton>
+          </Box>
+        }
       />
 
       <CardContent>

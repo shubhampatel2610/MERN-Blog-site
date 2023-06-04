@@ -16,7 +16,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // global states
-  const isLogin = useSelector((state) => state.isLogin);
+  let isLogin = useSelector((state) => state.isLogin);
 
   // states
   const { value, setValue } = useState();
